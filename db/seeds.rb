@@ -39,13 +39,13 @@ puts "Creating Posts"
 end
 
 posts=Post.all
-authors=User.all
+users=User.all
 puts "Creating comments"
 (MULTIPLIER * 20).times do
  c=Comment.new
  c.body= Faker::Lorem.paragraph[1..50]
  c.post_id=posts.sample.id
- c.author_id=authors.sample.id
+ c.user_id=users.sample.id
  c.save
 end
 
