@@ -1,0 +1,19 @@
+<%= form_for @post do |post_fields| %>
+  <%= post_fields.label :title %>
+  <%= post_fields.text_field :title %>
+  <%= post_fields.label :body %>
+  <%= post_fields.text_area :body, size: "60x12" %>
+
+	<h2> Comment </h2>
+
+	<%=post_fields.fields_for :comments,Comment.new do |comment_fields| %>
+		 <%= comment_fields.label :body %>
+		 <%= comment_fields.text_field :body %>
+	    <% if comment_fields.object.persisted? %>
+	      <%= comment_fields.label :_destroy, "Delete this comment?" %>
+	      <%= comment_fields.check_box :_destroy %>
+ 		<% end %>
+ 	<%end%>
+
+<%= post_fields.submit "Create" %>
+<% end %>
